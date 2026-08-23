@@ -20,7 +20,7 @@ RUN composer install \
     --optimize-autoloader \
     --no-scripts
 
-FROM php:8.3-apache-bookworm AS runtime
+FROM php:8.4-apache-bookworm AS runtime
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
