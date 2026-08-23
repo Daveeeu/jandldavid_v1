@@ -25,7 +25,8 @@ if [ ! -f "$APP_ROOT/.env" ]; then
 fi
 
 if ! grep -Eq '^APP_KEY=base64:' "$APP_ROOT/.env"; then
-  php artisan key:generate --force --no-interaction
+  echo "APP_KEY is missing in .env. Generate one on the host and restart the container." >&2
+  exit 1
 fi
 
 php artisan config:cache --no-interaction
