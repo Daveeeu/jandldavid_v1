@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1020"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="url(#panel)"/>
+  <circle cx="1012" cy="146" r="158" fill="url(#glow)" opacity="0.58"/>
+  <circle cx="976" cy="498" r="198" fill="url(#glow2)" opacity="0.42"/>
+  <path d="M115 179C115 161.327 129.327 147 147 147H430C447.673 147 462 161.327 462 179V451C462 468.673 447.673 483 430 483H147C129.327 483 115 468.673 115 451V179Z" fill="#0F172A" fill-opacity="0.68" stroke="rgba(255,255,255,0.1)"/>
+  <rect x="161" y="203" width="147" height="18" rx="9" fill="#22C55E"/>
+  <rect x="161" y="245" width="236" height="24" rx="12" fill="#F8FAFC"/>
+  <rect x="161" y="284" width="213" height="16" rx="8" fill="#93C5FD"/>
+  <rect x="161" y="336" width="255" height="12" rx="6" fill="#334155"/>
+  <rect x="161" y="364" width="221" height="12" rx="6" fill="#334155"/>
+  <rect x="161" y="392" width="182" height="12" rx="6" fill="#334155"/>
+  <rect x="558" y="162" width="495" height="306" rx="30" fill="#0F172A" fill-opacity="0.55" stroke="rgba(255,255,255,0.12)"/>
+  <text x="558" y="251" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="68" font-weight="700">Jandl Dávid</text>
+  <text x="558" y="316" fill="#93C5FD" font-family="Arial, sans-serif" font-size="28" font-weight="600">React, Laravel, infrastruktúra és biztonság</text>
+  <text x="558" y="374" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="26">Valódi problémákra épített, hosszú távon fenntartható rendszerek.</text>
+  <rect x="558" y="411" width="184" height="48" rx="24" fill="#22C55E"/>
+  <text x="593" y="442" fill="#04111D" font-family="Arial, sans-serif" font-size="24" font-weight="700">Production ready</text>
+  <defs>
+    <linearGradient id="panel" x1="78" y1="70" x2="1114" y2="564" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1012 146) rotate(90) scale(158)">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#22C55E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(976 498) rotate(90) scale(198)">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

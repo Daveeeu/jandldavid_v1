@@ -1,0 +1,69 @@
+{
+  "pages": {
+    "/": {
+      "title": "Jandl Dávid | Webfejlesztés, Laravel, React, infrastruktúra",
+      "description": "Valódi problémákra épített digitális rendszerek Reacttel, Laravellel, stabil infrastruktúrával és üzleti célokra szabott fejlesztéssel.",
+      "type": "website"
+    },
+    "/about": {
+      "title": "Rólam | Jandl Dávid",
+      "description": "Ismerd meg Jandl Dávid szemléletét, szakmai hátterét és azt, hogyan épít üzleti célokra optimalizált webes rendszereket.",
+      "type": "website"
+    },
+    "/projektek/performancevd": {
+      "title": "PerformanceVD esettanulmány | Jandl Dávid",
+      "description": "Sport SaaS ökoszisztéma esettanulmány: skálázható architektúra, jobb teljesítmény és üzleti célokra optimalizált felhasználói élmény.",
+      "type": "article"
+    },
+    "/projektek/motocosmos": {
+      "title": "MotoCosmos esettanulmány | Jandl Dávid",
+      "description": "MotoCosmos projektbemutató modern frontenddel, gyors működéssel és fenntartható technikai háttérrel.",
+      "type": "article"
+    },
+    "/projektek/saas-dashboard-platform": {
+      "title": "SaaS Dashboard Platform | Jandl Dávid",
+      "description": "Admin dashboard és automatizált backend rendszer modern analitikával, Laravel alapokon és skálázható architektúrával.",
+      "type": "article"
+    },
+    "/projektek/infrastructure-deployment-system": {
+      "title": "Infrastructure & Deployment System | Jandl Dávid",
+      "description": "CI/CD, monitoring és stabil cloud infrastruktúra esettanulmány Laravel- és DevOps-fókuszú rendszerépítéssel.",
+      "type": "article"
+    },
+    "/projektek/security-first-platform": {
+      "title": "Security-first Platform | Jandl Dávid",
+      "description": "Biztonságközpontú autentikációs és API-védelmi rendszer esettanulmány MFA-val, audit loggal és rate limitinggel.",
+      "type": "article"
+    }
+  },
+  "homepageFaqs": [
+    {
+      "question": "Mennyi idő alatt készül el egy projekt?",
+      "answer": "A projekt méretétől és összetettségétől függően általában 1–6 hét között. Nagyobb rendszereknél először részletes technikai felmérés készül."
+    },
+    {
+      "question": "Csak weboldalakat készítesz?",
+      "answer": "Nem. Landing oldalak mellett backend rendszerekkel, API fejlesztéssel, infrastruktúrával, deploymenttel és security-first fejlesztéssel is foglalkozom."
+    },
+    {
+      "question": "Tudsz segíteni meglévő rendszerek továbbfejlesztésében?",
+      "answer": "Igen. Sok esetben nem új rendszer építése a cél, hanem meglévő projektek stabilizálása, optimalizálása vagy modernizálása."
+    },
+    {
+      "question": "Van support és hosszú távú támogatás?",
+      "answer": "Igen. Monitoring, karbantartás, biztonsági frissítések és további fejlesztési támogatás is elérhető."
+    },
+    {
+      "question": "Hogyan indul el a közös munka?",
+      "answer": "Leírod röviden az ötletedet vagy problémádat, ezután pontosítjuk az igényeket és meghatározzuk a legjobb technikai irányt."
+    },
+    {
+      "question": "Milyen technológiákkal dolgozol?",
+      "answer": "Laravel, Vue, React, Docker, Linux, API rendszerek, cloud infrastruktúrák és modern webes technológiák."
+    },
+    {
+      "question": "Nemzetközi projekteket is vállalsz?",
+      "answer": "Igen. Magyar és nemzetközi ügyfelekkel is szívesen dolgozom."
+    }
+  ]
+}
