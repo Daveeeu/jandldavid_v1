@@ -14,6 +14,7 @@ services:
     ports:
       - "${APP_PORT:-8088}:80"
     volumes:
+      - ./.env:/var/www/html/.env:ro
       - ./storage:/var/www/html/storage
       - ./database:/var/www/html/database
     healthcheck:
