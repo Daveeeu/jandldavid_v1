@@ -28,6 +28,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         git \
         libzip-dev \
+        libsqlite3-dev \
+        pkg-config \
         sqlite3 \
         unzip \
     && docker-php-ext-install \
