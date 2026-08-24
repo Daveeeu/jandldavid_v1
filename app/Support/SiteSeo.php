@@ -96,6 +96,46 @@ class SiteSeo
             ];
         }
 
+        if (($meta['template'] ?? null) === 'service') {
+            $pageName = self::pageName($meta['title']);
+
+            return [
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'Service',
+                    'name' => $pageName,
+                    'description' => $meta['description'],
+                    'serviceType' => $pageName,
+                    'provider' => [
+                        '@type' => 'Person',
+                        'name' => 'Jandl Dávid',
+                        'url' => self::buildUrl($baseUrl, '/'),
+                    ],
+                    'areaServed' => 'HU',
+                    'url' => self::buildUrl($baseUrl, $path),
+                    'inLanguage' => 'hu-HU',
+                ],
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 1,
+                            'name' => 'Főoldal',
+                            'item' => self::buildUrl($baseUrl, '/'),
+                        ],
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 2,
+                            'name' => $pageName,
+                            'item' => self::buildUrl($baseUrl, $path),
+                        ],
+                    ],
+                ],
+            ];
+        }
+
         if ($path === '/adatvedelem' || $path === '/sutik') {
             $pageName = self::pageName($meta['title']);
 
@@ -183,6 +223,42 @@ class SiteSeo
                 base_path('src/app/seo.tsx'),
                 resource_path('seo/site-content.json'),
             ],
+            '/szolgaltatasok/weboldal-keszites' => [
+                base_path('src/app/pages/ServicePage.tsx'),
+                base_path('src/app/servicePages.ts'),
+                base_path('src/app/seo.tsx'),
+                resource_path('seo/site-content.json'),
+            ],
+            '/szolgaltatasok/webshop-keszites' => [
+                base_path('src/app/pages/ServicePage.tsx'),
+                base_path('src/app/servicePages.ts'),
+                base_path('src/app/seo.tsx'),
+                resource_path('seo/site-content.json'),
+            ],
+            '/szolgaltatasok/automatizacio-rendszerintegracio' => [
+                base_path('src/app/pages/ServicePage.tsx'),
+                base_path('src/app/servicePages.ts'),
+                base_path('src/app/seo.tsx'),
+                resource_path('seo/site-content.json'),
+            ],
+            '/szolgaltatasok/mobilalkalmazas-fejlesztes' => [
+                base_path('src/app/pages/ServicePage.tsx'),
+                base_path('src/app/servicePages.ts'),
+                base_path('src/app/seo.tsx'),
+                resource_path('seo/site-content.json'),
+            ],
+            '/szolgaltatasok/egyedi-szoftverfejlesztes' => [
+                base_path('src/app/pages/ServicePage.tsx'),
+                base_path('src/app/servicePages.ts'),
+                base_path('src/app/seo.tsx'),
+                resource_path('seo/site-content.json'),
+            ],
+            '/szolgaltatasok/infrastruktura-deployment' => [
+                base_path('src/app/pages/ServicePage.tsx'),
+                base_path('src/app/servicePages.ts'),
+                base_path('src/app/seo.tsx'),
+                resource_path('seo/site-content.json'),
+            ],
             '/projektek/performancevd' => [
                 base_path('src/app/pages/PerformanceVDPage.tsx'),
                 base_path('src/app/seo.tsx'),
@@ -253,6 +329,79 @@ class SiteSeo
                 'eyebrow' => 'Jog és adatvédelem',
                 'headline' => 'Süti tájékoztató',
                 'intro' => 'Összefoglaló a jandldavid.hu oldalon használt technikai, hozzájárulási és analitikai sütikről, valamint azok szerepéről.',
+            ],
+            '/szolgaltatasok/weboldal-keszites' => [
+                'eyebrow' => 'Webes szolgáltatás',
+                'headline' => 'Weboldal készítés és egyedi webfejlesztés',
+                'intro' => 'Weboldal készítés, weboldal fejlesztés és weboldal-karbantartás üzleti célokra szabott, gyors és bővíthető rendszerekkel.',
+                'items' => [
+                    'céges weboldalak és landing oldalak',
+                    'egyedi webfejlesztés Laravel- vagy React-alapon',
+                    'technikai SEO alapok és karbantartható kód',
+                    'weboldal-karbantartás és továbbfejlesztés',
+                ],
+                'cta_href' => '/#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
+            ],
+            '/szolgaltatasok/webshop-keszites' => [
+                'eyebrow' => 'E-kereskedelmi szolgáltatás',
+                'headline' => 'Webshop készítés és egyedi webáruház fejlesztés',
+                'intro' => 'Webshop készítés és webáruház készítés olyan projektekhez, ahol fontos a gyors vásárlási folyamat, a rendszerintegráció és a stabil háttérrendszer.',
+                'items' => [
+                    'egyedi webshop fejlesztés üzleti logikára szabva',
+                    'fizetési, számlázási vagy CRM integrációk',
+                    'adminfelület és bővíthető termékkezelés',
+                ],
+                'cta_href' => '/#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
+            ],
+            '/szolgaltatasok/automatizacio-rendszerintegracio' => [
+                'eyebrow' => 'Automatizáció',
+                'headline' => 'n8n automatizáció és üzleti rendszerintegráció',
+                'intro' => 'n8n automatizáció, üzleti automatizáció és rendszerintegráció a kézi folyamatok csökkentésére, átlátható technikai háttérrel.',
+                'items' => [
+                    'workflow-tervezés és kivitelezés n8n-nel',
+                    'API-k, webhookok és külső rendszerek összekötése',
+                    'monitorozható, hibabiztos automatizációs logika',
+                ],
+                'cta_href' => '/#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
+            ],
+            '/szolgaltatasok/mobilalkalmazas-fejlesztes' => [
+                'eyebrow' => 'Mobilfejlesztés',
+                'headline' => 'Mobilalkalmazás-fejlesztés és app készítés',
+                'intro' => 'Mobilalkalmazás-fejlesztés és app készítés üzleti rendszerekhez, Flutter- vagy egyedi technikai háttérrel.',
+                'items' => [
+                    'üzleti alkalmazásfejlesztés iOS- és Android-fókuszú projektekhez',
+                    'Flutter alapú app készítés',
+                    'backend, API és admin oldali kapcsolódás',
+                ],
+                'cta_href' => '/#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
+            ],
+            '/szolgaltatasok/egyedi-szoftverfejlesztes' => [
+                'eyebrow' => 'Egyedi rendszerek',
+                'headline' => 'Egyedi szoftverfejlesztés és backendfejlesztés',
+                'intro' => 'Egyedi szoftverfejlesztés, backendfejlesztés és Laravel-alapú üzleti rendszerek tervezése, fejlesztése és integrációja.',
+                'items' => [
+                    'egyedi admin rendszerek és belső workflow-k',
+                    'Laravel fejlesztés és API-központú backendek',
+                    'rendszerintegráció és hosszú távon bővíthető architektúra',
+                ],
+                'cta_href' => '/#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
+            ],
+            '/szolgaltatasok/infrastruktura-deployment' => [
+                'eyebrow' => 'Technikai háttér',
+                'headline' => 'Infrastruktúra és deployment üzleti rendszerekhez',
+                'intro' => 'Infrastruktúra és deployment modern szerverüzemeltetéssel, rendszerfelügyelettel, monitorozással és stabil release folyamatokkal.',
+                'items' => [
+                    'Docker, Linux és reverse proxy alapok',
+                    'CI/CD, backup és monitoring',
+                    'kiszámítható szerverüzemeltetés és rendszerfelügyelet',
+                ],
+                'cta_href' => '/#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
             ],
             default => [
                 'eyebrow' => str_starts_with($path, '/projektek/') ? 'Esettanulmány' : 'Jandldavid.hu',

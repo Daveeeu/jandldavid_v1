@@ -2,13 +2,23 @@
   "pages": {
     "/": {
       "title": "Jandl Dávid | Webfejlesztés, Laravel, React, infrastruktúra",
-      "description": "Valódi problémákra épített digitális rendszerek Reacttel, Laravellel, stabil infrastruktúrával és üzleti célokra szabott fejlesztéssel.",
-      "type": "website"
+      "description": "Webfejlesztés és egyedi digitális rendszerek Laravel-, React- és infrastruktúra-fókuszú, üzleti célokra szabott kivitelezéssel.",
+      "type": "website",
+      "template": "home",
+      "primaryKeyword": "webfejlesztés",
+      "secondaryKeywords": [
+        "Laravel",
+        "React",
+        "infrastruktúra",
+        "digitális rendszerek"
+      ],
+      "searchIntent": "commercial"
     },
     "/about": {
       "title": "Rólam | Jandl Dávid",
       "description": "Ismerd meg Jandl Dávid szemléletét, szakmai hátterét és azt, hogyan épít üzleti célokra optimalizált webes rendszereket.",
-      "type": "website"
+      "type": "website",
+      "template": "about"
     },
     "/adatvedelem": {
       "title": "Adatkezelési tájékoztató | Jandl Dávid",
@@ -18,32 +28,116 @@
     "/sutik": {
       "title": "Süti tájékoztató | Jandl Dávid",
       "description": "Süti tájékoztató a jandldavid.hu oldalon használt technikai, hozzájárulási és analitikai tárolásról.",
-      "type": "website"
+      "type": "website",
+      "template": "legal"
+    },
+    "/szolgaltatasok/weboldal-keszites": {
+      "title": "Weboldal készítés | Jandl Dávid",
+      "description": "Weboldal készítés, egyedi webfejlesztés és weboldal-karbantartás üzleti célokra szabott, gyors és bővíthető rendszerekkel.",
+      "type": "website",
+      "template": "service",
+      "primaryKeyword": "weboldal készítés",
+      "secondaryKeywords": [
+        "weboldal fejlesztés",
+        "egyedi webfejlesztés",
+        "weboldal-karbantartás"
+      ],
+      "searchIntent": "commercial"
+    },
+    "/szolgaltatasok/webshop-keszites": {
+      "title": "Webshop készítés | Jandl Dávid",
+      "description": "Webshop készítés és egyedi webáruház fejlesztés átgondolt vásárlási folyamattal, rendszerintegrációval és stabil technikai háttérrel.",
+      "type": "website",
+      "template": "service",
+      "primaryKeyword": "webshop készítés",
+      "secondaryKeywords": [
+        "webáruház készítés",
+        "egyedi webshop fejlesztés",
+        "rendszerintegráció"
+      ],
+      "searchIntent": "commercial"
+    },
+    "/szolgaltatasok/automatizacio-rendszerintegracio": {
+      "title": "n8n automatizáció | Jandl Dávid",
+      "description": "n8n automatizáció, üzleti automatizáció és rendszerintegráció olyan folyamatokhoz, amelyeknek stabil, követhető technikai háttér kell.",
+      "type": "website",
+      "template": "service",
+      "primaryKeyword": "n8n automatizáció",
+      "secondaryKeywords": [
+        "üzleti automatizáció",
+        "rendszerintegráció",
+        "backendfejlesztés"
+      ],
+      "searchIntent": "commercial"
+    },
+    "/szolgaltatasok/mobilalkalmazas-fejlesztes": {
+      "title": "Mobilalkalmazás-fejlesztés | Jandl Dávid",
+      "description": "Mobilalkalmazás-fejlesztés és app készítés üzleti rendszerekhez, Flutter-alapú vagy egyedi technikai háttérrel.",
+      "type": "website",
+      "template": "service",
+      "primaryKeyword": "mobilalkalmazás-fejlesztés",
+      "secondaryKeywords": [
+        "app készítés",
+        "Flutter fejlesztés",
+        "alkalmazásfejlesztés"
+      ],
+      "searchIntent": "commercial"
+    },
+    "/szolgaltatasok/egyedi-szoftverfejlesztes": {
+      "title": "Egyedi szoftverfejlesztés | Jandl Dávid",
+      "description": "Egyedi szoftverfejlesztés, backendfejlesztés és Laravel-alapú üzleti rendszerek tervezése, fejlesztése és integrációja.",
+      "type": "website",
+      "template": "service",
+      "primaryKeyword": "egyedi szoftverfejlesztés",
+      "secondaryKeywords": [
+        "backendfejlesztés",
+        "Laravel fejlesztés",
+        "rendszerintegráció"
+      ],
+      "searchIntent": "commercial"
+    },
+    "/szolgaltatasok/infrastruktura-deployment": {
+      "title": "Infrastruktúra és deployment | Jandl Dávid",
+      "description": "Infrastruktúra és deployment üzleti rendszerekhez: szerverüzemeltetés, rendszerfelügyelet, monitoring és stabil release folyamatok.",
+      "type": "website",
+      "template": "service",
+      "primaryKeyword": "infrastruktúra és deployment",
+      "secondaryKeywords": [
+        "szerverüzemeltetés",
+        "rendszerfelügyelet",
+        "deployment"
+      ],
+      "searchIntent": "commercial"
     },
     "/projektek/performancevd": {
       "title": "PerformanceVD esettanulmány | Jandl Dávid",
       "description": "Sport SaaS ökoszisztéma esettanulmány: skálázható architektúra, jobb teljesítmény és üzleti célokra optimalizált felhasználói élmény.",
-      "type": "article"
+      "type": "article",
+      "template": "project"
     },
     "/projektek/motocosmos": {
       "title": "MotoCosmos esettanulmány | Jandl Dávid",
       "description": "MotoCosmos projektbemutató modern frontenddel, gyors működéssel és fenntartható technikai háttérrel.",
-      "type": "article"
+      "type": "article",
+      "template": "project"
     },
     "/projektek/saas-dashboard-platform": {
       "title": "SaaS Dashboard Platform | Jandl Dávid",
       "description": "Admin dashboard és automatizált backend rendszer modern analitikával, Laravel alapokon és skálázható architektúrával.",
-      "type": "article"
+      "type": "article",
+      "template": "project"
     },
     "/projektek/infrastructure-deployment-system": {
       "title": "Infrastructure & Deployment System | Jandl Dávid",
       "description": "CI/CD, monitoring és stabil cloud infrastruktúra esettanulmány Laravel- és DevOps-fókuszú rendszerépítéssel.",
-      "type": "article"
+      "type": "article",
+      "template": "project"
     },
     "/projektek/security-first-platform": {
       "title": "Security-first Platform | Jandl Dávid",
       "description": "Biztonságközpontú autentikációs és API-védelmi rendszer esettanulmány MFA-val, audit loggal és rate limitinggel.",
-      "type": "article"
+      "type": "article",
+      "template": "project"
     }
   },
   "homepageFaqs": [

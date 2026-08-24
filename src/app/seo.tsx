@@ -16,7 +16,12 @@ const APP_NAME = "Jandl Dávid";
 const DEFAULT_IMAGE_PATH = "/og-image.png";
 const DEFAULT_ROBOTS = "index,follow";
 type HomepageFaq = { question: string; answer: string };
-type PageConfig = { title: string; description: string; type?: "website" | "article" };
+type PageConfig = {
+  title: string;
+  description: string;
+  type?: "website" | "article";
+  template?: "home" | "about" | "legal" | "service" | "project";
+};
 
 function getSharedPageConfig(): Record<string, PageConfig> {
   return (window.__SEO_PAGES__ ?? siteContent.pages) as Record<string, PageConfig>;
@@ -116,6 +121,50 @@ function getPageMeta(pathname: string, baseUrl: string): SeoMeta {
 
   if (pathname in sharedPages) {
     const meta = sharedPages[pathname];
+    const pageName = meta.title.replace(" | Jandl Dávid", "");
+
+    if (meta.template === "service") {
+      return {
+        ...meta,
+        canonicalPath: pathname,
+        schema: [
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: pageName,
+            description: meta.description,
+            serviceType: pageName,
+            provider: {
+              "@type": "Person",
+              name: APP_NAME,
+              url: buildUrl(baseUrl, "/"),
+            },
+            areaServed: "HU",
+            url: buildUrl(baseUrl, pathname),
+            inLanguage: "hu-HU",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Főoldal",
+                item: buildUrl(baseUrl, "/"),
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: pageName,
+                item: buildUrl(baseUrl, pathname),
+              },
+            ],
+          },
+        ],
+      };
+    }
+
     return {
       ...meta,
       canonicalPath: pathname,
@@ -123,7 +172,7 @@ function getPageMeta(pathname: string, baseUrl: string): SeoMeta {
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          name: meta.title.replace(" | Jandl Dávid", ""),
+          name: pageName,
           description: meta.description,
           url: buildUrl(baseUrl, pathname),
           inLanguage: "hu-HU",
@@ -145,7 +194,7 @@ function getPageMeta(pathname: string, baseUrl: string): SeoMeta {
             {
               "@type": "ListItem",
               position: 2,
-              name: meta.title.replace(" | Jandl Dávid", ""),
+              name: pageName,
               item: buildUrl(baseUrl, pathname),
             },
           ],

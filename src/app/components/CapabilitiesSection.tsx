@@ -467,6 +467,7 @@ interface ExpandedContent {
   quote: string;
   sections: ExpandedSection[];
   techTags: { label: string; color?: string; bg?: string }[];
+  relatedLinks?: { label: string; href: string }[];
 }
 
 function TechTag({ label, color = "#0f1117", bg = "#f3f4f6" }: { label: string; color?: string; bg?: string }) {
@@ -648,6 +649,46 @@ function ExpandedDetail({
           ))}
         </div>
       </div>
+
+      {content.relatedLinks?.length ? (
+        <div>
+          <div
+            style={{
+              fontSize: "0.6875rem",
+              fontWeight: 750,
+              color: "#9ca3af",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              marginBottom: "0.75rem",
+            }}
+          >
+            Részletes szolgáltatások
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+            {content.relatedLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  borderRadius: "9999px",
+                  border: `1px solid ${accentColor}24`,
+                  background: "#fff",
+                  color: "#0f1117",
+                  textDecoration: "none",
+                  padding: "0.5rem 0.85rem",
+                  fontSize: "0.8125rem",
+                  fontWeight: 650,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </motion.div>
   );
 }
@@ -920,6 +961,11 @@ export function CapabilitiesSection() {
           { label: "MySQL", color: "#0f1117", bg: "#f3f4f6" },
           { label: "PostgreSQL", color: "#3b82f6", bg: "#eff6ff" },
         ],
+        relatedLinks: [
+          { label: "Weboldal készítés", href: "/szolgaltatasok/weboldal-keszites" },
+          { label: "Webshop készítés", href: "/szolgaltatasok/webshop-keszites" },
+          { label: "Egyedi szoftverfejlesztés", href: "/szolgaltatasok/egyedi-szoftverfejlesztes" },
+        ],
       },
     },
     {
@@ -963,6 +1009,10 @@ export function CapabilitiesSection() {
           { label: "AWS", color: "#FF9900", bg: "#fffbeb" },
           { label: "DigitalOcean", color: "#3b82f6", bg: "#eff6ff" },
         ],
+        relatedLinks: [
+          { label: "Infrastruktúra és deployment", href: "/szolgaltatasok/infrastruktura-deployment" },
+          { label: "n8n automatizáció", href: "/szolgaltatasok/automatizacio-rendszerintegracio" },
+        ],
       },
     },
     {
@@ -1005,6 +1055,10 @@ export function CapabilitiesSection() {
           { label: "Security Audit", color: "#0f1117", bg: "#f3f4f6" },
           { label: "Monitoring", color: "#3b82f6", bg: "#eff6ff" },
         ],
+        relatedLinks: [
+          { label: "Egyedi szoftverfejlesztés", href: "/szolgaltatasok/egyedi-szoftverfejlesztes" },
+          { label: "Infrastruktúra és deployment", href: "/szolgaltatasok/infrastruktura-deployment" },
+        ],
       },
     },
   ];
@@ -1045,8 +1099,35 @@ export function CapabilitiesSection() {
               maxWidth: "560px",
             }}
           >
-            Frontendtől az infrastruktúráig olyan rendszereket építek, amelyek gyorsak, biztonságosak és hosszú távon is stabilan működnek.
+            Frontendtől az infrastruktúráig olyan rendszereket építek, amelyek gyorsak, biztonságosak és hosszú távon is stabilan működnek. A részletes szolgáltatásoldalakon külön bontva is megtalálod a weboldal készítés, webshop készítés, n8n automatizáció és egyedi szoftverfejlesztés fókuszait.
           </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", flexWrap: "wrap", marginTop: "1.25rem" }}>
+            {[
+              { label: "Weboldal készítés", href: "/szolgaltatasok/weboldal-keszites" },
+              { label: "Webshop készítés", href: "/szolgaltatasok/webshop-keszites" },
+              { label: "n8n automatizáció", href: "/szolgaltatasok/automatizacio-rendszerintegracio" },
+              { label: "Mobilalkalmazás-fejlesztés", href: "/szolgaltatasok/mobilalkalmazas-fejlesztes" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  borderRadius: "9999px",
+                  background: "#ffffff",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  color: "#0f1117",
+                  padding: "0.45rem 0.85rem",
+                  textDecoration: "none",
+                  fontSize: "0.8125rem",
+                  fontWeight: 650,
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </motion.div>
 
         {/* Cards */}

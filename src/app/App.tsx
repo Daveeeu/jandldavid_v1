@@ -23,6 +23,7 @@ const PerformanceVDPage = lazy(() => import("./pages/PerformanceVDPage"));
 const MotoCosmoPage = lazy(() => import("./pages/MotoCosmoPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
+const ServicePage = lazy(() => import("./pages/ServicePage"));
 
 const TECH_LOGOS = [
   {
@@ -457,6 +458,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/adatvedelem" element={<PrivacyPolicyPage />} />
             <Route path="/sutik" element={<CookiePolicyPage />} />
+            <Route path="/szolgaltatasok/:slug" element={<ServicePage />} />
             <Route path="/projektek/performancevd" element={<PerformanceVDPage />} />
             <Route path="/projektek/motocosmos" element={<MotoCosmoPage />} />
             <Route path="/projektek/:slug" element={<CaseStudyPage />} />
