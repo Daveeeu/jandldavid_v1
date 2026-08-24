@@ -26,16 +26,6 @@ const TESTIMONIALS = [
     accentColor: "#3b82f6",
     accentBg: "#eff6ff",
   },
-  {
-    title: "Security és teljesítmény egyszerre.",
-    body: "Nemcsak gyorsabb lett a rendszer, hanem biztonságosabb is. Ritka kombináció ilyen szintű szakmai hozzáállással.",
-    role: "Agency Partner",
-    company: "Digital Product",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&auto=format&q=80",
-    initials: "AP",
-    accentColor: "#8b5cf6",
-    accentBg: "#faf5ff",
-  },
 ];
 
 const TRUST_INDICATORS = [
@@ -279,6 +269,17 @@ export function TrustSection({ onStartProject }: { onStartProject?: () => void }
           >
             A sikeres projektek mögött nemcsak technológia, hanem kommunikáció, bizalom és közös gondolkodás áll.
           </p>
+          <p
+            style={{
+              fontSize: "0.875rem",
+              lineHeight: 1.7,
+              color: "#6e6e80",
+              margin: "1rem auto 0",
+              maxWidth: "620px",
+            }}
+          >
+            Az alábbi véleménykártyák illusztratív mintaszövegek, nem valós ügyfélidézetek vagy hitelesített értékelések.
+          </p>
         </motion.div>
 
         {/* Two-column main layout */}
@@ -344,10 +345,10 @@ export function TrustSection({ onStartProject }: { onStartProject?: () => void }
                     marginBottom: "0.2rem",
                   }}
                 >
-                  Átlagos elégedettség
+                  Mintázott elégedettségi szint
                 </div>
                 <div style={{ fontSize: "0.8125rem", color: "#6e6e80", fontWeight: 500 }}>
-                  minden projekten
+                  bemutató jelleggel
                 </div>
               </div>
             </div>
