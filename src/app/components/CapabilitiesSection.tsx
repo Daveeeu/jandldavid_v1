@@ -25,6 +25,7 @@ const ITEM_RADIUS = "0.875rem";
 function Badge({ label, color = "#0f1117", bg = "#f3f4f6" }: { label: string; color?: string; bg?: string }) {
   return (
     <span
+      className="capability-badge"
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -76,6 +77,7 @@ const CHART_BARS = [42, 58, 45, 72, 65, 88, 76, 94, 82, 98, 87, 100];
 function DashboardMockup() {
   return (
     <div
+      className="dashboard-mockup"
       style={{
         background: "#0f1117",
         borderRadius: "1.25rem",
@@ -107,19 +109,21 @@ function DashboardMockup() {
 
       <div style={{ padding: "1.25rem" }}>
         {/* Stat cards row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.625rem", marginBottom: "1rem" }}>
+        <div className="dashboard-stat-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "0.625rem", marginBottom: "1rem" }}>
           {[
             { label: "Revenue", value: "€48.2K", delta: "+12.4%", color: "#22c55e" },
             { label: "Users", value: "3,841", delta: "+8.1%", color: "#3b82f6" },
             { label: "Conversion", value: "4.7%", delta: "+0.6%", color: "#8b5cf6" },
           ].map((s) => (
             <div
+              className="dashboard-stat-card"
               key={s.label}
               style={{
                 background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "0.75rem",
                 padding: "0.75rem",
+                minWidth: 0,
               }}
             >
               <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.38)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "0.3rem" }}>
@@ -172,12 +176,13 @@ function DashboardMockup() {
         </div>
 
         {/* Bottom row */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.625rem", marginTop: "0.625rem" }}>
+        <div className="dashboard-bottom-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "0.625rem", marginTop: "0.625rem" }}>
           {[
             { label: "Active sessions", value: "247", icon: <Activity size={12} />, color: "#22c55e" },
             { label: "Orders today", value: "38", icon: <ShoppingCart size={12} />, color: "#3b82f6" },
           ].map((item) => (
             <div
+              className="dashboard-bottom-card"
               key={item.label}
               style={{
                 background: "rgba(255,255,255,0.03)",
@@ -187,6 +192,7 @@ function DashboardMockup() {
                 display: "flex",
                 alignItems: "center",
                 gap: "0.5rem",
+                minWidth: 0,
               }}
             >
               <span style={{ color: item.color }}>{item.icon}</span>
@@ -217,7 +223,7 @@ const TERMINAL_LINES = [
 
 function InfraMockup() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", width: "100%", maxWidth: "480px" }}>
+    <div className="infra-mockup" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", width: "100%", maxWidth: "480px" }}>
       {/* Terminal */}
       <div
         style={{
@@ -247,7 +253,7 @@ function InfraMockup() {
         </div>
         <div style={{ padding: "1rem 1.125rem", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
           {TERMINAL_LINES.map((line, i) => (
-            <div key={i} style={{ fontFamily: "monospace", fontSize: "0.75rem", color: line.color, lineHeight: 1.6 }}>
+            <div key={i} className="terminal-line" style={{ fontFamily: "monospace", fontSize: "0.75rem", color: line.color, lineHeight: 1.6 }}>
               {line.text}
             </div>
           ))}
@@ -268,13 +274,14 @@ function InfraMockup() {
       </div>
 
       {/* Metrics row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.625rem" }}>
+      <div className="infra-metrics-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "0.625rem" }}>
         {[
           { label: "24/7", sublabel: "Monitoring", icon: <Activity size={14} />, color: "#22c55e", bg: "#f0fdf4" },
           { label: "Auto", sublabel: "Deployment", icon: <Cloud size={14} />, color: "#3b82f6", bg: "#eff6ff" },
           { label: "Daily", sublabel: "Backup", icon: <Server size={14} />, color: "#8b5cf6", bg: "#faf5ff" },
         ].map((m) => (
           <div
+            className="infra-metric-card"
             key={m.label}
             style={{
               background: "#fff",
@@ -285,6 +292,7 @@ function InfraMockup() {
               flexDirection: "column",
               gap: "0.375rem",
               boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+              minWidth: 0,
             }}
           >
             <span
@@ -322,9 +330,10 @@ const AUDIT_ITEMS = [
 
 function SecurityMockup() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", width: "100%", maxWidth: "480px" }}>
+    <div className="security-mockup" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", width: "100%", maxWidth: "480px" }}>
       {/* Score card */}
       <div
+        className="security-score-card"
         style={{
           background: "#fff",
           border: "1px solid rgba(0,0,0,0.07)",
@@ -423,13 +432,14 @@ function SecurityMockup() {
       </div>
 
       {/* Bottom metric row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.625rem" }}>
+      <div className="security-metrics-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "0.625rem" }}>
         {[
           { label: "Protected", sublabel: "Endpoints", icon: <Lock size={13} />, color: "#22c55e", bg: "#f0fdf4" },
           { label: "Audit", sublabel: "Ready", icon: <Eye size={13} />, color: "#3b82f6", bg: "#eff6ff" },
           { label: "JWT", sublabel: "Secured", icon: <Wifi size={13} />, color: "#8b5cf6", bg: "#faf5ff" },
         ].map((m) => (
           <div
+            className="security-metric-card"
             key={m.sublabel}
             style={{
               background: "#fff",
@@ -440,6 +450,7 @@ function SecurityMockup() {
               flexDirection: "column",
               gap: "0.375rem",
               boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+              minWidth: 0,
             }}
           >
             <span style={{ width: "28px", height: "28px", borderRadius: "0.5rem", background: m.bg, display: "flex", alignItems: "center", justifyContent: "center", color: m.color }}>
@@ -759,7 +770,7 @@ function CapabilityCard({
         className="capability-card"
       >
         {/* Text side */}
-        <div style={{ direction: "ltr", display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+        <div className="capability-text-column" style={{ direction: "ltr", display: "flex", flexDirection: "column", gap: "1.75rem", minWidth: 0 }}>
           {/* Number + title */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.875rem" }}>
@@ -819,7 +830,7 @@ function CapabilityCard({
           </div>
 
           {/* Tech badges */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+          <div className="capability-badges-row" style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
             {badges.map((b) => (
               <Badge key={b.label} label={b.label} color={b.color ?? "#0f1117"} bg={b.bg ?? "#f3f4f6"} />
             ))}
@@ -875,6 +886,7 @@ function CapabilityCard({
 
         {/* Mockup side */}
         <div
+          className="capability-mockup-shell"
           style={{
             direction: "ltr",
             display: "flex",
@@ -884,6 +896,8 @@ function CapabilityCard({
             borderRadius: "1.25rem",
             padding: "1.75rem",
             minHeight: "320px",
+            minWidth: 0,
+            overflow: "hidden",
           }}
         >
           {mockup}
@@ -1211,8 +1225,65 @@ export function CapabilitiesSection() {
           .capability-card {
             grid-template-columns: 1fr !important;
             direction: ltr !important;
+            gap: 1.5rem !important;
           }
           .expanded-sections-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .capability-card-outer {
+            padding: 1.5rem !important;
+            border-radius: 1.5rem !important;
+          }
+          .capability-mockup-shell {
+            padding: 1rem !important;
+            min-height: auto !important;
+          }
+          .capability-badges-row {
+            gap: 0.5rem !important;
+          }
+          .capability-badge {
+            white-space: normal !important;
+          }
+          .dashboard-stat-grid,
+          .infra-metrics-grid,
+          .security-metrics-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
+          .dashboard-bottom-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .dashboard-stat-card,
+          .dashboard-bottom-card,
+          .infra-metric-card,
+          .security-metric-card {
+            padding: 0.75rem !important;
+          }
+          .security-score-card {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.875rem !important;
+          }
+          .terminal-line {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .dashboard-mockup,
+          .infra-mockup,
+          .security-mockup {
+            max-width: 100% !important;
+          }
+          .capability-text-column {
+            gap: 1.25rem !important;
+          }
+          .dashboard-stat-grid,
+          .infra-metrics-grid,
+          .security-metrics-grid {
             grid-template-columns: 1fr !important;
           }
         }
