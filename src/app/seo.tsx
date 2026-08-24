@@ -13,7 +13,7 @@ type SeoMeta = {
 };
 
 const APP_NAME = "Jandl Dávid";
-const DEFAULT_IMAGE_PATH = "/og-image.svg";
+const DEFAULT_IMAGE_PATH = "/og-image.png";
 const DEFAULT_ROBOTS = "index,follow";
 type HomepageFaq = { question: string; answer: string };
 type PageConfig = { title: string; description: string; type?: "website" | "article" };
@@ -239,12 +239,17 @@ export function SeoManager() {
     upsertMeta('meta[property="og:type"]', { property: "og:type" }, type);
     upsertMeta('meta[property="og:url"]', { property: "og:url" }, canonicalUrl);
     upsertMeta('meta[property="og:image"]', { property: "og:image" }, imageUrl);
+    upsertMeta('meta[property="og:image:alt"]', { property: "og:image:alt" }, meta.title);
+    upsertMeta('meta[property="og:image:type"]', { property: "og:image:type" }, "image/png");
+    upsertMeta('meta[property="og:image:width"]', { property: "og:image:width" }, "1200");
+    upsertMeta('meta[property="og:image:height"]', { property: "og:image:height" }, "630");
     upsertMeta('meta[property="og:locale"]', { property: "og:locale" }, "hu_HU");
     upsertMeta('meta[property="og:site_name"]', { property: "og:site_name" }, APP_NAME);
     upsertMeta('meta[name="twitter:card"]', { name: "twitter:card" }, "summary_large_image");
     upsertMeta('meta[name="twitter:title"]', { name: "twitter:title" }, meta.title);
     upsertMeta('meta[name="twitter:description"]', { name: "twitter:description" }, meta.description);
     upsertMeta('meta[name="twitter:image"]', { name: "twitter:image" }, imageUrl);
+    upsertMeta('meta[name="twitter:image:alt"]', { name: "twitter:image:alt" }, meta.title);
     upsertLink("canonical", canonicalUrl);
     upsertStructuredData(meta.schema);
   }, [location.pathname]);

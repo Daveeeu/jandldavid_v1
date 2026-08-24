@@ -23,6 +23,9 @@ function FAQItem({
   onToggle: () => void;
   inView: boolean;
 }) {
+  const answerId = `faq-answer-${index}`;
+  const buttonId = `faq-trigger-${index}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -30,7 +33,6 @@ function FAQItem({
       transition={{ duration: 0.45, delay: 0.06 + index * 0.055, ease: [0.22, 1, 0.36, 1] }}
     >
       <div
-        onClick={onToggle}
         style={{
           background: open ? "#fafffe" : "#ffffff",
           border: open ? "1.5px solid rgba(34,197,94,0.22)" : "1.5px solid rgba(0,0,0,0.07)",
@@ -58,13 +60,23 @@ function FAQItem({
         }}
       >
         {/* Question row */}
-        <div
+        <button
+          id={buttonId}
+          type="button"
+          onClick={onToggle}
+          aria-expanded={open}
+          aria-controls={answerId}
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             gap: "1rem",
             padding: "1.125rem 1.375rem",
+            width: "100%",
+            background: "transparent",
+            border: "none",
+            textAlign: "left",
+            cursor: "pointer",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", flex: 1, minWidth: 0 }}>
@@ -121,12 +133,15 @@ function FAQItem({
           >
             <Plus size={13} strokeWidth={2.5} />
           </motion.span>
-        </div>
+        </button>
 
         {/* Answer */}
         <AnimatePresence initial={false}>
           {open && (
             <motion.div
+              id={answerId}
+              role="region"
+              aria-labelledby={buttonId}
               key="answer"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}

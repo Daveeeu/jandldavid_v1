@@ -183,7 +183,9 @@ function TestimonialCard({
       >
         <img
           src={card.avatar}
-          alt={card.role}
+          alt={`${card.role} – ${card.company}`}
+          loading="lazy"
+          decoding="async"
           style={{
             width: "38px",
             height: "38px",

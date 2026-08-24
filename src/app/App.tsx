@@ -994,6 +994,10 @@ function HomePage() {
                 <img
                   src={profileHero}
                   alt="Jandl Dávid portréja hajón, szabadtéri környezetben"
+                  width={1200}
+                  height={1600}
+                  fetchPriority="high"
+                  decoding="async"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
                 <div

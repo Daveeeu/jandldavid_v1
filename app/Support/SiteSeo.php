@@ -216,6 +216,52 @@ class SiteSeo
         return $baseUrl.($path === '/' ? '/' : $path);
     }
 
+    public static function fallbackContentForPath(string $path): array
+    {
+        return match ($path) {
+            '/' => [
+                'eyebrow' => 'Technikai partner webes rendszerekhez',
+                'headline' => 'Megbízható technikai háttér a vállalkozásod mögé.',
+                'intro' => 'Weboldalkészítés, webfejlesztés, Laravel- és React-alapú rendszerek, üzleti automatizációk, n8n workflow-k, mobilalkalmazás-fejlesztés és stabil infrastruktúra egy kézben.',
+                'items' => [
+                    'Weboldalkészítés és egyedi webfejlesztés',
+                    'Webshop- és webáruház-készítés',
+                    'Laravel, React és backendfejlesztés',
+                    'n8n automatizáció, rendszerintegráció és deployment',
+                ],
+                'cta_href' => '#section-contact',
+                'cta_label' => 'Kapcsolatfelvétel',
+            ],
+            '/about' => [
+                'eyebrow' => 'Rólam',
+                'headline' => 'Technikai háttér a vállalkozásod mögé.',
+                'intro' => 'Jandl Dávidként vállalkozásoknak segítek üzleti célokra optimalizált webes rendszerek, automatizációk és infrastruktúrák tervezésében, fejlesztésében és üzemeltetésében.',
+                'items' => [
+                    '8+ év technológiai tapasztalat',
+                    'Laravel, React, API- és backendfejlesztés',
+                    'Stabil, bővíthető és fenntartható rendszerépítés',
+                ],
+                'cta_href' => '/',
+                'cta_label' => 'Vissza a főoldalra',
+            ],
+            '/adatvedelem' => [
+                'eyebrow' => 'Jog és adatvédelem',
+                'headline' => 'Adatkezelési tájékoztató',
+                'intro' => 'Összefoglaló arról, hogy a jandldavid.hu oldalon milyen személyes és technikai adatok kezelése történik, milyen célból, és milyen jogok illetik meg a látogatókat.',
+            ],
+            '/sutik' => [
+                'eyebrow' => 'Jog és adatvédelem',
+                'headline' => 'Süti tájékoztató',
+                'intro' => 'Összefoglaló a jandldavid.hu oldalon használt technikai, hozzájárulási és analitikai sütikről, valamint azok szerepéről.',
+            ],
+            default => [
+                'eyebrow' => str_starts_with($path, '/projektek/') ? 'Esettanulmány' : 'Jandldavid.hu',
+                'headline' => self::pageName(self::metaForPath($path)['title']),
+                'intro' => self::metaForPath($path)['description'],
+            ],
+        };
+    }
+
     private static function pageName(string $title): string
     {
         return trim(str_replace(' | Jandl Dávid', '', $title));

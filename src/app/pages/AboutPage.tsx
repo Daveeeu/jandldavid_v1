@@ -249,6 +249,9 @@ export default function AboutPage() {
               <img
                 src={profileAbout}
                 alt="Jandl Dávid a tengerparton"
+                width={1050}
+                height={1400}
+                decoding="async"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,17,23,0.18) 0%, transparent 50%)", pointerEvents: "none" }} />
@@ -561,6 +564,10 @@ export default function AboutPage() {
               <img
                 src={profileHero}
                 alt="Jandl Dávid portréja hajón"
+                width={1200}
+                height={1600}
+                loading="lazy"
+                decoding="async"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>
