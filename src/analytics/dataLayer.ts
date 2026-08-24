@@ -20,9 +20,17 @@ import { getStoredConsent } from "./consent";
 // ─── Client ID ────────────────────────────────────────────────────────────────
 
 const CLIENT_ID_KEY = "kt_ga_cid";
+let transientClientId: string | null = null;
 
 function getOrCreateClientId(): string {
   if (typeof window === "undefined") return "server";
+  const consent = getStoredConsent();
+
+  if (consent?.analytics !== true) {
+    transientClientId ??= `anon.${Math.random().toString(36).slice(2)}.${Date.now()}`;
+    return transientClientId;
+  }
+
   try {
     let cid = localStorage.getItem(CLIENT_ID_KEY);
     if (!cid) {
@@ -127,6 +135,7 @@ const RETURN_VISITOR_KEY = "kt_rv";
 
 export function markVisit(): void {
   if (typeof window === "undefined") return;
+  if (getStoredConsent()?.analytics !== true) return;
   try {
     localStorage.setItem(RETURN_VISITOR_KEY, "1");
   } catch {
@@ -175,6 +184,7 @@ function enqueueForServer(
   params: Record<string, unknown>
 ): void {
   if (typeof window === "undefined") return;
+  if (getStoredConsent()?.analytics !== true) return;
   try {
     const raw = sessionStorage.getItem(SERVER_QUEUE_KEY);
     const queue: QueuedEvent[] = raw ? JSON.parse(raw) : [];
@@ -232,6 +242,7 @@ export async function flushServerQueue(): Promise<void> {
 
   const consent = getStoredConsent();
   if (consent?.analytics !== true) {
+    restoreServerQueue([]);
     return;
   }
 

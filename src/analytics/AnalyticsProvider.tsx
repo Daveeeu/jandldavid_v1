@@ -57,6 +57,7 @@ function resolvePageType(
   if (pathname === "/") return "homepage";
   if (pathname.startsWith("/projektek/")) return "project_case_study";
   if (pathname === "/about") return "about";
+  if (pathname === "/adatvedelem" || pathname === "/sutik") return "legal";
   if (pathname === "/blog") return "blog";
   return "not_found";
 }
@@ -68,6 +69,8 @@ function resolvePageTitle(pathname: string): string {
   if (pathname === "/projektek/infrastructure-deployment-system")
     return "Infrastructure Deployment System";
   if (pathname === "/about") return "Rólam — Jandl Dávid";
+  if (pathname === "/adatvedelem") return "Adatkezelési tájékoztató — Jandl Dávid";
+  if (pathname === "/sutik") return "Süti tájékoztató — Jandl Dávid";
   if (pathname === "/blog") return "Blog — Jandl Dávid";
   return "Jandl Dávid";
 }

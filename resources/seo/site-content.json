@@ -10,6 +10,16 @@
       "description": "Ismerd meg Jandl Dávid szemléletét, szakmai hátterét és azt, hogyan épít üzleti célokra optimalizált webes rendszereket.",
       "type": "website"
     },
+    "/adatvedelem": {
+      "title": "Adatkezelési tájékoztató | Jandl Dávid",
+      "description": "Adatkezelési tájékoztató a jandldavid.hu oldalon kezelt kapcsolati, technikai és analitikai adatok fő szabályairól.",
+      "type": "website"
+    },
+    "/sutik": {
+      "title": "Süti tájékoztató | Jandl Dávid",
+      "description": "Süti tájékoztató a jandldavid.hu oldalon használt technikai, hozzájárulási és analitikai tárolásról.",
+      "type": "website"
+    },
     "/projektek/performancevd": {
       "title": "PerformanceVD esettanulmány | Jandl Dávid",
       "description": "Sport SaaS ökoszisztéma esettanulmány: skálázható architektúra, jobb teljesítmény és üzleti célokra optimalizált felhasználói élmény.",

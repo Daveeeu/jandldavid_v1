@@ -9,6 +9,7 @@ import { TrustSection } from "./components/TrustSection";
 import { ContactSection } from "./components/ContactSection";
 import { FAQSection } from "./components/FAQSection";
 import { Footer } from "./components/Footer";
+import { CookieBanner } from "./components/CookieBanner";
 import { SECTION_IDS, scrollToSection, scrollToContact, scrollToContactAndConsult } from "./utils/navigation";
 import { ScrollManager } from "./components/ScrollManager";
 import { ArrowRight, Shield, Layers, Server, Check, ExternalLink, Menu, X, XCircle, CheckCircle2, Zap, Lock, Cloud, TrendingUp, ArrowRightLeft } from "lucide-react";
@@ -20,6 +21,8 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const CaseStudyPage = lazy(() => import("./pages/CaseStudyPage"));
 const PerformanceVDPage = lazy(() => import("./pages/PerformanceVDPage"));
 const MotoCosmoPage = lazy(() => import("./pages/MotoCosmoPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
 
 const TECH_LOGOS = [
   {
@@ -447,10 +450,13 @@ export default function App() {
       <ScrollManager />
       <SeoManager />
       <AnalyticsProvider>
+        <CookieBanner />
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/adatvedelem" element={<PrivacyPolicyPage />} />
+            <Route path="/sutik" element={<CookiePolicyPage />} />
             <Route path="/projektek/performancevd" element={<PerformanceVDPage />} />
             <Route path="/projektek/motocosmos" element={<MotoCosmoPage />} />
             <Route path="/projektek/:slug" element={<CaseStudyPage />} />

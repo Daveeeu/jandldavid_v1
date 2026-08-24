@@ -18,6 +18,7 @@ import type { ConsentUpdate } from "./types";
 // ─── Storage key ──────────────────────────────────────────────────────────────
 
 const CONSENT_STORAGE_KEY = "kt_consent_v2";
+const CONSENT_EVENT_NAME = "jd:consent-changed";
 
 export interface StoredConsent {
   analytics: boolean;
@@ -28,6 +29,15 @@ export interface StoredConsent {
 }
 
 const CONSENT_VERSION = 2;
+
+function notifyConsentChanged(consent: StoredConsent | null): void {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(
+    new CustomEvent(CONSENT_EVENT_NAME, {
+      detail: consent,
+    })
+  );
+}
 
 // ─── DataLayer push (no import to avoid circular deps) ───────────────────────
 
@@ -92,6 +102,7 @@ export function updateConsent(
 
   persistConsent(consent);
   applyConsent(analytics, marketing, functionality);
+  notifyConsentChanged(consent);
 
   pushToDataLayer({
     event: "consent_updated",
@@ -136,6 +147,7 @@ export function grantAnalyticsOnly(): void {
 export function revokeAllConsent(): void {
   updateConsent(false, false, false);
   clearStoredConsent();
+  notifyConsentChanged(null);
 }
 
 // ─── Read stored consent ──────────────────────────────────────────────────────
@@ -180,4 +192,23 @@ function clearStoredConsent(): void {
   } catch {
     // ignore
   }
+}
+
+export function subscribeToConsentChanges(
+  listener: (consent: StoredConsent | null) => void
+): () => void {
+  if (typeof window === "undefined") {
+    return () => undefined;
+  }
+
+  const handler = (event: Event) => {
+    const detail = (event as CustomEvent<StoredConsent | null>).detail ?? null;
+    listener(detail);
+  };
+
+  window.addEventListener(CONSENT_EVENT_NAME, handler as EventListener);
+
+  return () => {
+    window.removeEventListener(CONSENT_EVENT_NAME, handler as EventListener);
+  };
 }

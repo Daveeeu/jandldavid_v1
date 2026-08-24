@@ -30,6 +30,7 @@ export {
   hasConsentDecision,
   isAnalyticsGranted,
   getStoredConsent,
+  subscribeToConsentChanges,
 } from "./consent";
 
 export { drainServerQueue, flushServerQueue } from "./dataLayer";

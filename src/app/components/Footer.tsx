@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { ArrowRight, Check, Mail, Linkedin, Github, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SECTION_IDS, scrollToSection, scrollToContact, scrollToContactAndConsult } from "../utils/navigation";
 
 const NAV_LINKS = [
@@ -26,6 +27,11 @@ const CONTACT_LINKS = [
   { icon: <Mail size={14} />, label: "info@jandldavid.hu", href: "mailto:info@jandldavid.hu" },
   { icon: <Linkedin size={14} />, label: "LinkedIn", href: "#" },
   { icon: <Github size={14} />, label: "GitHub", href: "#" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Adatkezelési tájékoztató", href: "/adatvedelem" },
+  { label: "Süti tájékoztató", href: "/sutik" },
 ];
 
 export function Footer() {
@@ -454,9 +460,33 @@ export function Footer() {
             © 2026 Jandl Dávid
           </span>
 
-          <span style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,0.18)", letterSpacing: "-0.01em", fontWeight: 500 }}>
-            Technikai partnerként vállalkozások oldalán.
-          </span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1rem",
+              flexWrap: "wrap",
+            }}
+          >
+            {LEGAL_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                style={{
+                  fontSize: "0.8125rem",
+                  color: "rgba(255,255,255,0.36)",
+                  textDecoration: "none",
+                  fontWeight: 500,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <span style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,0.18)", letterSpacing: "-0.01em", fontWeight: 500 }}>
+              Technikai partnerként vállalkozások oldalán.
+            </span>
+          </div>
         </div>
       </div>
 

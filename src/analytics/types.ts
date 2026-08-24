@@ -66,6 +66,7 @@ export type PageType =
   | "homepage"
   | "project_case_study"
   | "about"
+  | "legal"
   | "blog"
   | "not_found";
 
