@@ -60,6 +60,8 @@ interface ContactPayload {
   meta: { url: string; referrer: string; utmSource?: string; utmMedium?: string; utmCampaign?: string };
 }
 
+const AI_ASSISTANT_ENABLED = false;
+
 let _msgCounter = 0;
 function nextId() { return `msg_${Date.now()}_${++_msgCounter}`; }
 
@@ -338,11 +340,15 @@ function AIPanelShell({ isActive, children }: { isActive: boolean; children: Rea
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.2 }}>AI Projekt Asszisztens</div>
-          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.45)", marginTop: "0.15rem" }}>Segít összefoglalni az igényeket</div>
+          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.45)", marginTop: "0.15rem" }}>
+            {AI_ASSISTANT_ENABLED ? "Segít összefoglalni az igényeket" : "Hamarosan elérhető"}
+          </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
           <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: isActive ? "#22c55e" : "rgba(255,255,255,0.2)", boxShadow: isActive ? "0 0 0 3px rgba(34,197,94,0.2)" : "none", animation: isActive ? "pulseGreen 2s ease-in-out infinite" : "none", transition: "background 0.3s" }} />
-          <span style={{ fontSize: "0.75rem", fontWeight: 650, color: isActive ? "#22c55e" : "rgba(255,255,255,0.3)", transition: "color 0.3s" }}>{isActive ? "Online" : "Készenléti mód"}</span>
+          <span style={{ fontSize: "0.75rem", fontWeight: 650, color: isActive ? "#22c55e" : "rgba(255,255,255,0.3)", transition: "color 0.3s" }}>
+            {AI_ASSISTANT_ENABLED ? (isActive ? "Online" : "Készenléti mód") : "Hamarosan"}
+          </span>
         </div>
       </div>
       {children}
@@ -406,7 +412,9 @@ function AIDemoCard() {
       </AnimatePresence>
       <div style={{ padding: "0.875rem 1.375rem", borderTop: "1px solid rgba(255,255,255,0.05)", background: "rgba(0,0,0,0.15)", flexShrink: 0, position: "relative", zIndex: 1 }}>
         <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", margin: 0, lineHeight: 1.5, letterSpacing: "-0.01em" }}>
-          Engedélyezd az AI asszisztenst a jobb oldali formban, és valódi projektbeszélgetést indíthatsz.
+          {AI_ASSISTANT_ENABLED
+            ? "Engedélyezd az AI asszisztenst a jobb oldali formban, és valódi projektbeszélgetést indíthatsz."
+            : "Az AI asszisztens fejlesztés alatt van, hamarosan itt is elérhető lesz."}
         </p>
       </div>
     </AIPanelShell>
@@ -526,6 +534,7 @@ function ProjectForm({
   ] as const;
 
   const toggleCheck = (i: number, label: string) => {
+    if (i === 0 && !AI_ASSISTANT_ENABLED) return;
     const next: FormData = {
       ...form,
       aiAssist: i === 0 ? !form.aiAssist : form.aiAssist,
@@ -552,7 +561,7 @@ function ProjectForm({
       <div>
         <div style={{ fontSize: "1.1875rem", fontWeight: 750, color: "#0f1117", letterSpacing: "-0.035em", marginBottom: "0.3rem" }}>Mesélj a projektedről</div>
         <div style={{ fontSize: "0.875rem", color: "#6e6e80", lineHeight: 1.55 }}>
-          {form.aiAssist ? "Az AI asszisztens segít pontosítani az igényeket." : "Írd le röviden az ötletedet — válaszolok."}
+          {AI_ASSISTANT_ENABLED && form.aiAssist ? "Az AI asszisztens segít pontosítani az igényeket." : "Írd le röviden az ötletedet — válaszolok."}
         </div>
       </div>
 
@@ -597,14 +606,19 @@ function ProjectForm({
       {/* Checkboxes */}
       <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
         {LABELS.map((label, i) => (
-          <label key={label} style={{ display: "flex", alignItems: "center", gap: "0.625rem", cursor: "pointer", userSelect: "none" }}>
+          <label key={label} style={{ display: "flex", alignItems: "center", gap: "0.625rem", cursor: i === 0 && !AI_ASSISTANT_ENABLED ? "not-allowed" : "pointer", userSelect: "none", opacity: i === 0 && !AI_ASSISTANT_ENABLED ? 0.6 : 1 }}>
             <span
               onClick={() => toggleCheck(i, label)}
-              style={{ width: "18px", height: "18px", borderRadius: "0.375rem", border: checks[i] ? "2px solid #22c55e" : "1.5px solid rgba(0,0,0,0.18)", background: checks[i] ? "#22c55e" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.15s", cursor: "pointer" }}
+              style={{ width: "18px", height: "18px", borderRadius: "0.375rem", border: checks[i] ? "2px solid #22c55e" : "1.5px solid rgba(0,0,0,0.18)", background: checks[i] ? "#22c55e" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.15s", cursor: i === 0 && !AI_ASSISTANT_ENABLED ? "not-allowed" : "pointer" }}
             >
               {checks[i] && <Check size={10} color="#fff" strokeWidth={3} />}
             </span>
             <span style={{ fontSize: "0.875rem", color: "#4b5563", fontWeight: 500, letterSpacing: "-0.01em" }}>{label}</span>
+            {i === 0 && !AI_ASSISTANT_ENABLED && (
+              <span style={{ fontSize: "0.6875rem", fontWeight: 700, color: "#b45309", background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "9999px", padding: "0.18rem 0.5rem", letterSpacing: "-0.01em" }}>
+                Hamarosan
+              </span>
+            )}
           </label>
         ))}
 
@@ -687,7 +701,20 @@ export function ContactSection() {
   // ── Form state (persisted) ──────────────────────────────────────────────────
   const [form, setFormRaw] = useState<FormData>(() => {
     const s = loadSaved();
-    return { name: "", email: "", description: "", aiAssist: false, consultation: false, existingSystem: false, existingSystemUrl: "", ...s.form };
+    const baseForm: FormData = {
+      name: "",
+      email: "",
+      description: "",
+      aiAssist: false,
+      consultation: false,
+      existingSystem: false,
+      existingSystemUrl: "",
+      ...s.form,
+    };
+    return {
+      ...baseForm,
+      aiAssist: AI_ASSISTANT_ENABLED ? baseForm.aiAssist : false,
+    };
   });
 
   // ── Chat state (persisted) ──────────────────────────────────────────────────
@@ -883,9 +910,9 @@ export function ContactSection() {
         {/* Header */}
         <motion.div ref={headerRef} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} style={{ textAlign: "center", marginBottom: "4rem" }}>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "9999px", padding: "0.375rem 1rem", fontSize: "0.8125rem", fontWeight: 650, color: "#16a34a", letterSpacing: "-0.01em" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: AI_ASSISTANT_ENABLED ? "#f0fdf4" : "#fffbeb", border: AI_ASSISTANT_ENABLED ? "1px solid #bbf7d0" : "1px solid #fde68a", borderRadius: "9999px", padding: "0.375rem 1rem", fontSize: "0.8125rem", fontWeight: 650, color: AI_ASSISTANT_ENABLED ? "#16a34a" : "#b45309", letterSpacing: "-0.01em" }}>
               <Sparkles size={13} />
-              AI-támogatott projekt felvétel
+              {AI_ASSISTANT_ENABLED ? "AI-támogatott projekt felvétel" : "AI projekt asszisztens hamarosan"}
             </span>
           </div>
           <h2 style={{ fontSize: "clamp(1.875rem, 3.2vw, 2.875rem)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.15, color: "#0f1117", margin: "0 0 1.25rem" }}>
@@ -896,7 +923,9 @@ export function ContactSection() {
             </span>?
           </h2>
           <p style={{ fontSize: "1.0625rem", lineHeight: 1.75, color: "#6e6e80", margin: "0 auto", maxWidth: "560px" }}>
-            Írd le röviden az ötletedet vagy problémádat, és az AI asszisztens segít pontosítani az igényeket, mielőtt elküldené nekem.
+            {AI_ASSISTANT_ENABLED
+              ? "Írd le röviden az ötletedet vagy problémádat, és az AI asszisztens segít pontosítani az igényeket, mielőtt elküldené nekem."
+              : "Írd le röviden az ötletedet vagy problémádat. Az AI asszisztens ezen a felületen hamarosan érkezik."}
           </p>
         </motion.div>
 

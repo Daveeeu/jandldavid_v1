@@ -127,6 +127,44 @@ class ProjectPlatformTest extends TestCase
         });
     }
 
+    public function test_simple_project_inquiry_without_ai_conversation_is_persisted(): void
+    {
+        Mail::fake();
+        Config::set('mail.contact_recipient.address', 'owner@openai.com');
+        Config::set('mail.contact_recipient.name', 'Jandl Dávid');
+
+        $response = $this->postJson('/api/contact/project', [
+            'form' => [
+                'name' => 'Teszt Elek',
+                'email' => 'teszt@openai.com',
+                'description' => 'Szeretnék egy egyszerű bemutatkozó oldalt.',
+                'aiAssist' => false,
+                'consultation' => false,
+                'existingSystem' => false,
+                'existingSystemUrl' => '',
+            ],
+            'conversation' => [],
+            'summary' => null,
+            'meta' => [
+                'url' => 'https://jandldavid.hu/',
+                'referrer' => '',
+                'utmSource' => null,
+                'utmMedium' => null,
+                'utmCampaign' => null,
+            ],
+        ]);
+
+        $response->assertCreated()->assertJsonStructure(['id', 'message']);
+
+        $this->assertDatabaseCount('project_inquiries', 1);
+
+        $inquiry = ProjectInquiry::query()->firstOrFail();
+
+        $this->assertSame('Teszt Elek', $inquiry->name);
+        $this->assertFalse($inquiry->ai_assist);
+        $this->assertSame([], $inquiry->conversation);
+    }
+
     public function test_customer_confirmation_email_open_is_tracked(): void
     {
         $inquiry = ProjectInquiry::query()->create([
@@ -150,5 +188,26 @@ class ProjectPlatformTest extends TestCase
 
         $this->assertNotNull($inquiry->customer_confirmation_opened_at);
         $this->assertSame(1, $inquiry->customer_confirmation_open_count);
+    }
+
+    public function test_homepage_contains_server_rendered_structured_data_and_canonical_tags(): void
+    {
+        $response = $this->get('/');
+
+        $response
+            ->assertOk()
+            ->assertSee('application/ld+json', false)
+            ->assertSee('rel="canonical"', false)
+            ->assertSee('hreflang="hu-HU"', false)
+            ->assertSee('/og-image.png', false);
+    }
+
+    public function test_unknown_routes_return_404_and_noindex_meta(): void
+    {
+        $response = $this->get('/nincs-ilyen-oldal');
+
+        $response
+            ->assertNotFound()
+            ->assertSee('content="noindex,follow"', false);
     }
 }

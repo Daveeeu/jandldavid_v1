@@ -12,8 +12,16 @@ async function requestJson<TResponse>(url: string, body: unknown): Promise<TResp
     let message = 'A kérés sikertelen volt.';
 
     try {
-      const data = (await response.json()) as { message?: string };
-      message = data.message ?? message;
+      const data = (await response.json()) as {
+        message?: string;
+        errors?: Record<string, string[]>;
+      };
+
+      const firstFieldError = data.errors
+        ? Object.values(data.errors).flat().find((error) => !!error?.trim())
+        : null;
+
+      message = firstFieldError ?? data.message ?? message;
     } catch {
       // Keep the fallback message when the server response is not JSON.
     }
