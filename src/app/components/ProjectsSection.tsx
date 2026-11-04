@@ -441,62 +441,24 @@ function SecurityMockup() {
   );
 }
 
-// ─── Mockup 03: Adria Holiday ─────────────────────────────────────────────────
-
-const AH_GRADIENT = "linear-gradient(90deg, #4fd1a5 0%, #4fa8e8 100%)";
-
-const AH_TOURS = [
-  { t: "Toszkán impressziók", m: "Buszos körutazás · 5 nap", c: "#4fd1a5" },
-  { t: "Advent Krakkóban", m: "Adventi út · 2 nap", c: "#4fa8e8" },
-  { t: "Szlovéniai pillanatok", m: "Körutazás · 3 nap", c: "#8b9cf6" },
-];
+// ─── Mockup 03: Adria Holiday (real screenshot) ───────────────────────────────
 
 function AdriaHolidayMockup() {
   return (
-    <div style={{ background: "linear-gradient(170deg, #12304a 0%, #0c1c2e 100%)", borderRadius: "1.25rem", overflow: "hidden", boxShadow: "0 24px 64px rgba(12,28,46,0.35), 0 4px 20px rgba(79,168,232,0.18)", border: "1px solid rgba(79,168,232,0.15)", fontFamily: "'Inter',sans-serif", width: "100%" }}>
+    <div style={{ background: "#0c1c2e", borderRadius: "1.25rem", overflow: "hidden", boxShadow: "0 24px 64px rgba(12,28,46,0.35), 0 4px 20px rgba(79,168,232,0.18)", border: "1px solid rgba(79,168,232,0.15)", fontFamily: "'Inter',sans-serif", width: "100%" }}>
       <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "0.625rem 1rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
         {["#ef4444", "#f59e0b", "#22c55e"].map((c) => <span key={c} style={{ width: 8, height: 8, borderRadius: "50%", background: c, opacity: 0.6, display: "inline-block" }} />)}
         <span style={{ flex: 1, textAlign: "center", fontSize: "0.6rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.04em" }}>adriaholiday.hu</span>
       </div>
-      <div style={{ padding: "1.125rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-        {/* Hero */}
-        <div>
-          <div style={{ fontSize: "0.55rem", color: "#4fd1a5", fontStyle: "italic", marginBottom: "0.2rem" }}>Az élmény rád vár</div>
-          <div style={{ fontSize: "1.0625rem", fontWeight: 800, color: "#fff", letterSpacing: "-0.04em", lineHeight: 1.2 }}>
-            Utazások, amikre{" "}
-            <span style={{ background: AH_GRADIENT, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>emlékezni fogsz</span>
-          </div>
-        </div>
-        {/* Search bar */}
-        <div style={{ display: "flex", gap: "0.375rem", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "0.75rem", padding: "0.375rem" }}>
-          {["Úti cél", "Időpont", "Utazás típusa"].map((f) => (
-            <div key={f} style={{ flex: 1, fontSize: "0.55rem", color: "rgba(255,255,255,0.45)", background: "rgba(255,255,255,0.04)", borderRadius: "0.5rem", padding: "0.4rem 0.5rem" }}>{f}</div>
-          ))}
-          <div style={{ fontSize: "0.55rem", fontWeight: 700, color: "#fff", background: AH_GRADIENT, borderRadius: "0.5rem", padding: "0.4rem 0.625rem" }}>Keresés</div>
-        </div>
-        {/* Tour cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-          {AH_TOURS.map((tour) => (
-            <div key={tour.t} style={{ display: "flex", alignItems: "center", gap: "0.625rem", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "0.75rem", padding: "0.5rem" }}>
-              <span style={{ width: 34, height: 26, borderRadius: "0.4rem", background: `linear-gradient(135deg, ${tour.c}, ${tour.c}55)`, flexShrink: 0 }} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>{tour.t}</div>
-                <div style={{ fontSize: "0.55rem", color: "rgba(255,255,255,0.4)" }}>{tour.m}</div>
-              </div>
-              <span style={{ fontSize: "0.55rem", fontWeight: 650, color: "#4fd1a5", background: "rgba(79,209,165,0.12)", padding: "0.2rem 0.5rem", borderRadius: "9999px" }}>Foglalás</span>
-            </div>
-          ))}
-        </div>
-        {/* Stats */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.4rem" }}>
-          {[{ v: "10 000+", l: "Elégedett utas" }, { v: "23+", l: "Év tapasztalat" }, { v: "4,1/5", l: "Értékelés" }].map((s) => (
-            <div key={s.l} style={{ textAlign: "center", background: "rgba(255,255,255,0.03)", borderRadius: "0.625rem", padding: "0.45rem" }}>
-              <div style={{ fontSize: "0.8125rem", fontWeight: 750, color: "#4fd1a5", letterSpacing: "-0.03em" }}>{s.v}</div>
-              <div style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <img
+        src="/images/projects/adriaholiday.webp"
+        alt="Az adriaholiday.hu nyitóoldala"
+        width={1600}
+        height={1000}
+        loading="lazy"
+        decoding="async"
+        style={{ display: "block", width: "100%", height: "auto" }}
+      />
     </div>
   );
 }
@@ -534,8 +496,8 @@ const PROJECTS = [
     categoryColor: "#0e9f8e",
     categoryBg: "#ecfdf8",
     title: "Adria Holiday",
-    description: "Modern utazási iroda weboldal 2003 óta működő irodának: körutazások, adventi utak és tengerparti nyaralások böngészése és online foglalása.",
-    features: ["Utazáskereső és kategóriák", "Online foglalás", "Barion fizetés", "Last minute ajánlatok", "SEO-optimalizált utazásoldalak"],
+    description: "Új weboldal a 2003 óta működő Adria Holiday utazási irodának. Az utakat kategóriák és szűrők alapján lehet böngészni, és a foglalást is online, kártyás fizetéssel lehet intézni.",
+    features: ["Utazáskereső szűrőkkel", "Online foglalás", "Barion fizetés", "Last minute ajánlatok", "Laravel backend"],
     badges: [
       { label: "Laravel", color: "#ef4444", bg: "#fef2f2" },
       { label: "React", color: "#61dafb", bg: "rgba(97,218,251,0.08)" },
@@ -544,9 +506,9 @@ const PROJECTS = [
       { label: "SEO", color: "#0f1117", bg: "#f3f4f6" },
     ],
     metrics: [
-      { icon: "🧳", label: "Élő éles oldal" },
-      { icon: "💳", label: "Online fizetés" },
-      { icon: "📱", label: "Reszponzív" },
+      { icon: "🌍", label: "Élesben fut" },
+      { icon: "💳", label: "Barion fizetés" },
+      { icon: "📱", label: "Mobilon is" },
     ],
     mockup: <AdriaHolidayMockup />,
     mockupBg: "#0c1c2e",
