@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { motion, useInView } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { track } from "@/analytics";
@@ -21,6 +21,7 @@ import {
   Zap,
   Layers,
   TrendingDown,
+  ExternalLink,
 } from "lucide-react";
 
 // ─── Shared ───────────────────────────────────────────────────────────────────
@@ -440,6 +441,66 @@ function SecurityMockup() {
   );
 }
 
+// ─── Mockup 03: Adria Holiday ─────────────────────────────────────────────────
+
+const AH_GRADIENT = "linear-gradient(90deg, #4fd1a5 0%, #4fa8e8 100%)";
+
+const AH_TOURS = [
+  { t: "Toszkán impressziók", m: "Buszos körutazás · 5 nap", c: "#4fd1a5" },
+  { t: "Advent Krakkóban", m: "Adventi út · 2 nap", c: "#4fa8e8" },
+  { t: "Szlovéniai pillanatok", m: "Körutazás · 3 nap", c: "#8b9cf6" },
+];
+
+function AdriaHolidayMockup() {
+  return (
+    <div style={{ background: "linear-gradient(170deg, #12304a 0%, #0c1c2e 100%)", borderRadius: "1.25rem", overflow: "hidden", boxShadow: "0 24px 64px rgba(12,28,46,0.35), 0 4px 20px rgba(79,168,232,0.18)", border: "1px solid rgba(79,168,232,0.15)", fontFamily: "'Inter',sans-serif", width: "100%" }}>
+      <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "0.625rem 1rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+        {["#ef4444", "#f59e0b", "#22c55e"].map((c) => <span key={c} style={{ width: 8, height: 8, borderRadius: "50%", background: c, opacity: 0.6, display: "inline-block" }} />)}
+        <span style={{ flex: 1, textAlign: "center", fontSize: "0.6rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.04em" }}>adriaholiday.hu</span>
+      </div>
+      <div style={{ padding: "1.125rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        {/* Hero */}
+        <div>
+          <div style={{ fontSize: "0.55rem", color: "#4fd1a5", fontStyle: "italic", marginBottom: "0.2rem" }}>Az élmény rád vár</div>
+          <div style={{ fontSize: "1.0625rem", fontWeight: 800, color: "#fff", letterSpacing: "-0.04em", lineHeight: 1.2 }}>
+            Utazások, amikre{" "}
+            <span style={{ background: AH_GRADIENT, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>emlékezni fogsz</span>
+          </div>
+        </div>
+        {/* Search bar */}
+        <div style={{ display: "flex", gap: "0.375rem", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "0.75rem", padding: "0.375rem" }}>
+          {["Úti cél", "Időpont", "Utazás típusa"].map((f) => (
+            <div key={f} style={{ flex: 1, fontSize: "0.55rem", color: "rgba(255,255,255,0.45)", background: "rgba(255,255,255,0.04)", borderRadius: "0.5rem", padding: "0.4rem 0.5rem" }}>{f}</div>
+          ))}
+          <div style={{ fontSize: "0.55rem", fontWeight: 700, color: "#fff", background: AH_GRADIENT, borderRadius: "0.5rem", padding: "0.4rem 0.625rem" }}>Keresés</div>
+        </div>
+        {/* Tour cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+          {AH_TOURS.map((tour) => (
+            <div key={tour.t} style={{ display: "flex", alignItems: "center", gap: "0.625rem", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "0.75rem", padding: "0.5rem" }}>
+              <span style={{ width: 34, height: 26, borderRadius: "0.4rem", background: `linear-gradient(135deg, ${tour.c}, ${tour.c}55)`, flexShrink: 0 }} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>{tour.t}</div>
+                <div style={{ fontSize: "0.55rem", color: "rgba(255,255,255,0.4)" }}>{tour.m}</div>
+              </div>
+              <span style={{ fontSize: "0.55rem", fontWeight: 650, color: "#4fd1a5", background: "rgba(79,209,165,0.12)", padding: "0.2rem 0.5rem", borderRadius: "9999px" }}>Foglalás</span>
+            </div>
+          ))}
+        </div>
+        {/* Stats */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.4rem" }}>
+          {[{ v: "10 000+", l: "Elégedett utas" }, { v: "23+", l: "Év tapasztalat" }, { v: "4,1/5", l: "Értékelés" }].map((s) => (
+            <div key={s.l} style={{ textAlign: "center", background: "rgba(255,255,255,0.03)", borderRadius: "0.625rem", padding: "0.45rem" }}>
+              <div style={{ fontSize: "0.8125rem", fontWeight: 750, color: "#4fd1a5", letterSpacing: "-0.03em" }}>{s.v}</div>
+              <div style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Projects data ─────────────────────────────────────────────────────────────
 
 const PROJECTS = [
@@ -467,6 +528,32 @@ const PROJECTS = [
     reversed: false,
     modalId: "performancevd",
     ctaLabel: "Teljes projekt megtekintése",
+  },
+  {
+    category: "Utazási iroda weboldal",
+    categoryColor: "#0e9f8e",
+    categoryBg: "#ecfdf8",
+    title: "Adria Holiday",
+    description: "Modern utazási iroda weboldal 2003 óta működő irodának: körutazások, adventi utak és tengerparti nyaralások böngészése és online foglalása.",
+    features: ["Utazáskereső és kategóriák", "Online foglalás", "Barion fizetés", "Last minute ajánlatok", "SEO-optimalizált utazásoldalak"],
+    badges: [
+      { label: "Laravel", color: "#ef4444", bg: "#fef2f2" },
+      { label: "React", color: "#61dafb", bg: "rgba(97,218,251,0.08)" },
+      { label: "Vite", color: "#8b5cf6", bg: "#faf5ff" },
+      { label: "Barion", color: "#0e9f8e", bg: "#ecfdf8" },
+      { label: "SEO", color: "#0f1117", bg: "#f3f4f6" },
+    ],
+    metrics: [
+      { icon: "🧳", label: "Élő éles oldal" },
+      { icon: "💳", label: "Online fizetés" },
+      { icon: "📱", label: "Reszponzív" },
+    ],
+    mockup: <AdriaHolidayMockup />,
+    mockupBg: "#0c1c2e",
+    reversed: true,
+    modalId: "adriaholiday",
+    externalUrl: "https://adriaholiday.hu",
+    ctaLabel: "Weboldal megtekintése",
   },
   // {
   //   category: "Közösségi Motoros Platform",
@@ -706,6 +793,28 @@ function ProjectCard({ project, index, onNavigate }: { project: typeof PROJECTS[
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
+  const ctaStyle: CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.45rem",
+    background: project.categoryBg,
+    color: project.categoryColor,
+    border: `1.5px solid ${project.categoryColor}30`,
+    borderRadius: "0.75rem",
+    padding: "0.6875rem 1.25rem",
+    fontSize: "0.875rem",
+    fontWeight: 700,
+    cursor: "pointer",
+    letterSpacing: "-0.02em",
+    transition: "all 0.15s",
+  };
+
+  const ctaHover = (el: HTMLElement, hovered: boolean) => {
+    el.style.borderColor = hovered ? project.categoryColor : `${project.categoryColor}30`;
+    el.style.transform = hovered ? "translateY(-1px)" : "translateY(0)";
+    el.style.boxShadow = hovered ? `0 4px 16px ${project.categoryColor}25` : "none";
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -819,37 +928,30 @@ function ProjectCard({ project, index, onNavigate }: { project: typeof PROJECTS[
               ))}
             </div>
             <div>
-              <button
-                onClick={() => onNavigate(project.modalId)}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.45rem",
-                  background: project.categoryBg,
-                  color: project.categoryColor,
-                  border: `1.5px solid ${project.categoryColor}30`,
-                  borderRadius: "0.75rem",
-                  padding: "0.6875rem 1.25rem",
-                  fontSize: "0.875rem",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  letterSpacing: "-0.02em",
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = project.categoryColor;
-                  e.currentTarget.style.transform = "translateY(-1px)";
-                  e.currentTarget.style.boxShadow = `0 4px 16px ${project.categoryColor}25`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = `${project.categoryColor}30`;
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-              >
-                {project.ctaLabel}
-                <ArrowRight size={14} />
-              </button>
+              {project.externalUrl ? (
+                <a
+                  href={project.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track.trackProjectCardClicked(project.title, project.modalId, index, "projects_section")}
+                  style={{ ...ctaStyle, textDecoration: "none" }}
+                  onMouseEnter={(e) => ctaHover(e.currentTarget, true)}
+                  onMouseLeave={(e) => ctaHover(e.currentTarget, false)}
+                >
+                  {project.ctaLabel}
+                  <ExternalLink size={14} />
+                </a>
+              ) : (
+                <button
+                  onClick={() => onNavigate(project.modalId)}
+                  style={ctaStyle}
+                  onMouseEnter={(e) => ctaHover(e.currentTarget, true)}
+                  onMouseLeave={(e) => ctaHover(e.currentTarget, false)}
+                >
+                  {project.ctaLabel}
+                  <ArrowRight size={14} />
+                </button>
+              )}
             </div>
           </div>
         </div>
